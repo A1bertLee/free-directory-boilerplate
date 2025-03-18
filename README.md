@@ -64,7 +64,10 @@
 1. Clone the repository
 2. Run `pnpm install`
 3. Configure the `.env` file
-4. Run `pnpm dev`
+4. Initialize database
+  - pnpm prisma generate  # 生成Prisma Client
+  - pnpm prisma db push   # 将schema同步到数据库
+5. Run `pnpm dev`
 
 ## Author
 

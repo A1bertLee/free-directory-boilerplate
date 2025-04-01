@@ -38,6 +38,12 @@ export default middleware((request: NextRequest & { auth: Session | null }): Res
   const pathname = request.nextUrl.pathname;
   console.log('middleware, pathname:', pathname);
 
+  // Skip middleware for Sanity Studio
+  if (pathname.startsWith('/studio')) {
+    console.log('middleware, skipping for studio:', pathname);
+    return;
+  }
+
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   if (
     [
@@ -194,7 +200,7 @@ export default middleware((request: NextRequest & { auth: Session | null }): Res
 // meaning that every request has to go through the middleware checks. 
 // You can however define only private routes here, but the former gives you more control and is strongly advisable.
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)", "/"],
+  // Matcher ignoring `/_next/`, `/api/` and `/studio/`
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|studio).*)", "/"],
   // matcher: ["/((?!.+\\.[\\w]+$|_next|api).*)", "/"],
 };

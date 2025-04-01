@@ -16,6 +16,7 @@ export const publicRoutes = [
   "/about-zh",
   "/terms",
   "/privacy",
+  "/studio",
 ];
 
 export const restrictedRoutes = [
